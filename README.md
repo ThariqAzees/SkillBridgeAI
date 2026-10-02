@@ -80,3 +80,18 @@ SkillBridge AI is a realistic, production-ready full-stack AI freelance marketpl
    npm run dev
    ```
    Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Vercel Deployment & Password Reset Architecture
+
+1. **Vercel Hobby Deployment**:
+   - Configured for seamless deployment on Vercel Serverless.
+   - Automatic Prisma Client generation on build/install.
+
+2. **Nodemailer SMTP Password Reset**:
+   - Cryptographic 64-character SHA-256 hashed single-use tokens stored in `PasswordResetToken` database table.
+   - 15-minute token expiration and atomic consumption.
+   - Server-side synchronization with Supabase Auth (`supabaseAdmin.auth.admin.updateUserById`).
+   - Non-enumerating password recovery API responses.
+
